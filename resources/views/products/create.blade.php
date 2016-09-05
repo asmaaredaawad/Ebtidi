@@ -1,6 +1,6 @@
 @extends('layout')
 @section('css')
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css" rel="stylesheet">
+  <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css" rel="stylesheet"> -->
 @endsection
 @section('header')
     
@@ -35,7 +35,7 @@
                     </div>
 
                       <div class="form-group @if($errors->has('category_id')) has-error @endif">
-                       <label for="category_id-field">Category_id</label>
+                       <label for="category_id-field">Category Name</label>
                        <select id="category_id-field" name="category_id" class="form-control">
                        <option value="0">choose Category</option>
                         @foreach($cat as $cat)
@@ -61,7 +61,7 @@
 
 <script src="{{URL::asset('js/add.js')}}"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>-->
   <script>
     $('.date-picker').datepicker({
     });

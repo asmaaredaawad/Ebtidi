@@ -20,9 +20,9 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>NAME</th>
-                        <th>USER_ID</th>
-                        <th>CATEGORY_ID</th>
+                            <th>Product</th>
+                        <th>User Name</th>
+                        <th>Category Name</th>
                             <th class="text-right">OPTIONS</th>
                         </tr>
                     </thead>
@@ -32,15 +32,17 @@
                             <tr>
                                 <td>{{$product->id}}</td>
                                 <td>{{$product->name}}</td>
-                    <td>{{$product->user_id}}</td>
-                    <td>{{$product->category_id}}</td>
+                                <td>{{$product->user->name}}</td>
+                                <td>{{$product->category->name}}</td>
                                 <td class="text-right">
                                     <a class="btn btn-xs btn-primary" href="{{ route('products.show', $product->id) }}"><i class="glyphicon glyphicon-eye-open"></i> View</a>
                                     <a class="btn btn-xs btn-warning" href="{{ route('products.edit', $product->id) }}"><i class="glyphicon glyphicon-edit"></i> Edit</a>
-                                    <form action="{{ route('products.destroy', $product->id) }}" method="POST" style="display: inline;" onsubmit="if(confirm('Delete? Are you sure?')) { return true } else {return false };">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <button type="submit" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</button>
+                                    <form   style="display: inline;" >
+                                        <!-- <input type="hidden" name="_method" value="DELETE"> -->
+                                        <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
+                                        <input type="hidden"  id='product_id-field'name="product_id" value="{{ $product->id }}">
+
+                                        <button  id="delete"class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</button>
                                     </form>
                                 </td>
                             </tr>
@@ -54,5 +56,11 @@
 
         </div>
     </div>
+
+@endsection
+
+
+@section('scripts')
+<script src="{{URL::asset('js/delete.js')}}"></script>
 
 @endsection

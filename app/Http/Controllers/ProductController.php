@@ -111,7 +111,7 @@ class ProductController extends Controller {
 
 		return redirect()->route('products.index')->with('message', 'Item deleted successfully.');
 	}
-
+	//add by ajax
 	public function addproduct(Request $request){
 
 		$product = new Product();
@@ -120,10 +120,32 @@ class ProductController extends Controller {
         $product->category_id = $request->input("category_id");
 
 		$product->save();
-		// $products = Product::lists('id')->all();
 		return redirect('products');
-		// return view('products.index', compact('products'));
+	}
+	// delete by ajax
+	public function deleteproduct(Request $request){
+		$id = $request->input("product_id");
+		$product = Product::findOrFail($id);
+		$product->delete();
+		return redirect('products');
 
+	}
+	// edit by ajax
+	public function editproduct(Request $request){
+		
+		$name = $request->input("name");
+        $user_id = $request->input("user_id");
+        $category_id = $request->input("category_id");
+		$id = $request->input("product_id");
+
+		$product = Product::findOrFail($id);
+		$product->name=$name;
+		$product->user_id=$user_id;
+		$product->category_id=$category_id;
+		$product->save();
+
+		return redirect('products');
+		
 	}
 
 }

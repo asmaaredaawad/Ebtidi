@@ -24,4 +24,7 @@ Route::resource("categories","CategoryController"); // Add this line in routes.p
 
 Route::resource("products","ProductController"); // Add this line in routes.php
 
+// request for ajax
 Route::post('/addproduct',"ProductController@addproduct");
+Route::post('/deleteproduct',"ProductController@deleteproduct");
+Route::post('/editproduct',"ProductController@editproduct");

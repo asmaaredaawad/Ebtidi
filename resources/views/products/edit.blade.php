@@ -1,6 +1,6 @@
 @extends('layout')
 @section('css')
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css" rel="stylesheet">
+  <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css" rel="stylesheet"> -->
 @endsection
 @section('header')
     <div class="page-header">
@@ -14,9 +14,10 @@
     <div class="row">
         <div class="col-md-12">
 
-            <form action="{{ route('products.update', $product->id) }}" method="POST">
-                <input type="hidden" name="_method" value="PUT">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <form >
+                <!-- <input type="hidden" name="_method" value="PUT"> -->
+                <input type="hidden"  id="token" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden"  id='product_id-field'name="product_id" value="{{ $product->id }}">
 
                 <div class="form-group @if($errors->has('name')) has-error @endif">
                        <label for="name-field">Name</label>
@@ -40,7 +41,7 @@
                        @endif
                     </div>
                 <div class="well well-sm">
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button id="edit" class="btn btn-primary">Save</button>
                     <a class="btn btn-link pull-right" href="{{ route('products.index') }}"><i class="glyphicon glyphicon-backward"></i>  Back</a>
                 </div>
             </form>
@@ -49,9 +50,6 @@
     </div>
 @endsection
 @section('scripts')
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
-  <script>
-    $('.date-picker').datepicker({
-    });
-  </script>
+<script src="{{URL::asset('js/edit.js')}}"></script>
+
 @endsection
